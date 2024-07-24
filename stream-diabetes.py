@@ -14,7 +14,7 @@ st.subheader('Masukkan Data untuk Memprediksi Diabetes')
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
-    Pregnancies = st.number_input('Bulan Kehamilan (0 jika tidak hamil)', min_value=0, step=1, format="%d")
+    Pregnancies = st.number_input('Bulan Kehamilan', min_value=0, step=1, format="%d")
 
 with col2:
     Glucose = st.number_input('Glukosa', min_value=0, step=1, format="%d")
