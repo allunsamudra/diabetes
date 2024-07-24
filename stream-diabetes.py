@@ -4,82 +4,54 @@ import streamlit as st
 # Load the model
 diabetes_model = pickle.load(open('diabetes_model.sav', 'rb'))
 
-# Web title
+# Title of the web app
 st.title('Prediksi Diabetes')
 
-# Description and instructions
-st.markdown("""
-    <style>
-        .main {
-            background-color: #f5f5f5;
-            padding: 20px;
-        }
-        h1 {
-            color: #4CAF50;
-            text-align: center;
-        }
-        .description {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .input-section {
-            margin: 20px 0;
-        }
-        .result {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #4CAF50;
-            text-align: center;
-            margin-top: 20px;
-        }
-    </style>
-    <div class="description">
-        Masukkan data pasien untuk memprediksi apakah mereka terkena diabetes atau tidak.
-    </div>
-""", unsafe_allow_html=True)
+# Add a subtitle for better understanding
+st.subheader('Masukkan Data untuk Memprediksi Diabetes')
 
-# Create form for input
-with st.form(key='diabetes_form'):
-    col1, col2 = st.columns(2)
+# Four column layout
+col1, col2, col3, col4 = st.columns(4)
 
-    with col1:
-        Pregnancies = st.text_input('Bulan Kehamilan (0 jika tidak hamil)')
-        BloodPressure = st.text_input('Tekanan Darah')
-        Insulin = st.text_input('Insulin')
-        DiabetesPedigreeFunction = st.text_input('Diabetes Pedigree Function')
+with col1:
+    Pregnancies = st.number_input('Bulan Kehamilan (0 jika tidak hamil)', min_value=0, step=1, format="%d")
 
-    with col2:
-        Glucose = st.text_input('Glukosa')
-        SkinThickness = st.text_input('Ketebalan Kulit')
-        BMI = st.text_input('BMI')
-        Age = st.text_input('Umur')
+with col2:
+    Glucose = st.number_input('Glukosa', min_value=0, step=1, format="%d")
 
-    # Create button for prediction
-    submit_button = st.form_submit_button(label='Test Prediksi Diabetes')
+with col3:
+    BloodPressure = st.number_input('Tekanan Darah', min_value=0, step=1, format="%d")
 
-    # Code for prediction
-    if submit_button:
-        try:
-            # Convert inputs to appropriate format
-            input_features = [[
-                float(Pregnancies),
-                float(Glucose),
-                float(BloodPressure),
-                float(SkinThickness),
-                float(Insulin),
-                float(BMI),
-                float(DiabetesPedigreeFunction),
-                float(Age)
-            ]]
+with col4:
+    SkinThickness = st.number_input('Ketebalan Kulit', min_value=0, step=1, format="%d")
 
-            diab_prediction = diabetes_model.predict(input_features)
+with col1:
+    Insulin = st.number_input('Insulin', min_value=0, step=1, format="%d")
 
-            if diab_prediction[0] == 1:
-                diab_diagnosis = 'Pasien terkena Diabetes'
-            else:
-                diab_diagnosis = 'Pasien tidak terkena Diabetes'
+with col2:
+    BMI = st.number_input('BMI', min_value=0.0, step=0.1, format="%.1f")
 
-            st.markdown(f"<div class='result'>{diab_diagnosis}</div>", unsafe_allow_html=True)
-        except ValueError:
-            st.error("Pastikan semua input adalah angka yang valid.")
+with col3:
+    DiabetesPedigreeFunction = st.number_input('Diabetes Pedigree Function', min_value=0.0, step=0.01, format="%.2f")
+
+with col4:
+    Age = st.number_input('Umur', min_value=0, step=1, format="%d")
+
+# Placeholder for the diagnosis result
+diab_diagnosis = ''
+
+# Create a button for prediction
+if st.button('Test Prediksi Diabetes'):
+    diab_prediction = diabetes_model.predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
+
+    if diab_prediction[0] == 1:
+        diab_diagnosis = 'Pasien terkena Diabetes'
+    else:
+        diab_diagnosis = 'Pasien tidak terkena Diabetes'
+        
+    # Display the diagnosis result
+    st.success(diab_diagnosis)
+
+# Add footer
+st.write("---")
+st.write("Aplikasi Prediksi Diabetes ini dibuat untuk membantu memprediksi kemungkinan diabetes berdasarkan data kesehatan yang dimasukkan.")
