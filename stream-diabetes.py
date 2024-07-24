@@ -5,34 +5,34 @@ import streamlit as st
 diabetes_model = pickle.load(open('diabetes_model.sav', 'rb'))
 
 #judul web
-st.title('Data Mining Prediksi Diabetes')
+st.title('Prediksi Diabetes')
 
 #membagi kolom
 col1, col2 = st.columns(2)
 
 with col1 :
-    Pregnancies = st.text_input ('input nilai Pregnancies')
+    Pregnancies = st.text_input ('Bulan Kehamilan (0 jika tidak hamil')
 
 with col2 :
-    Glucose = st.text_input ('input nilai Glucose')
+    Glucose = st.text_input ('Glukosa')
 
 with col1 :
-    BloodPressure = st.text_input ('input nilai Blood Pressure')
+    BloodPressure = st.text_input ('Tekanan Darah')
 
 with col2 :
-    SkinThickness = st.text_input ('input nilai Skin Thickness')
+    SkinThickness = st.text_input ('Ketebalan Kulit')
 
 with col1 :
-    Insulin = st.text_input ('input nilai Insulin')
+    Insulin = st.text_input ('Insulin')
 
 with col2 :
-    BMI = st.text_input ('input nilai BMI')
+    BMI = st.text_input ('BMI')
 
 with col1 :
-    DiabetesPedigreeFunction = st.text_input ('input nilai Diabetes Pedigree Function')
+    DiabetesPedigreeFunction = st.text_input ('Diabetes Pedigree Function')
 
 with col2 :
-    Age = st.text_input ('input nilai Age')
+    Age = st.text_input ('Umur')
 
 # code untuk prediksi
 diab_diagnosis = ''
