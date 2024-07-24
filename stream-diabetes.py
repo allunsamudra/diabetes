@@ -12,6 +12,7 @@ st.markdown("""
     <style>
         .main {
             background-color: #f5f5f5;
+            padding: 20px;
         }
         h1 {
             color: #4CAF50;
@@ -20,6 +21,7 @@ st.markdown("""
         .description {
             font-size: 1.2em;
             margin-bottom: 20px;
+            text-align: center;
         }
         .input-section {
             margin: 20px 0;
@@ -28,6 +30,8 @@ st.markdown("""
             font-size: 1.5em;
             font-weight: bold;
             color: #4CAF50;
+            text-align: center;
+            margin-top: 20px;
         }
     </style>
     <div class="description">
