@@ -11,7 +11,7 @@ st.title('Prediksi Diabetes')
 col1, col2 = st.columns(2)
 
 with col1 :
-    Pregnancies = st.text_input ('Bulan Kehamilan (0 jika tidak hamil')
+    Pregnancies = st.text_input ('Bulan Kehamilan (0 jika tidak hamil)')
 
 with col2 :
     Glucose = st.text_input ('Glukosa')
