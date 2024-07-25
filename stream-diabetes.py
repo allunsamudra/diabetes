@@ -20,7 +20,7 @@ with col2:
 with col3:
     BloodPressure = st.number_input('Tekanan Darah (mmHg)', min_value=0, step=1, format="%d")
 with col4:
-    SkinThickness = st.number_input('Ketebalan lipatan kulit trisep (mm)', min_value=0, step=1, format="%d")
+    Age = st.number_input('Usia (tahun)', min_value=0, step=1, format="%d") 
 
 col5, col6, col7, col8 = st.columns([2, 2, 2, 2])
 
@@ -31,7 +31,7 @@ with col6:
 with col7:
     DiabetesPedigreeFunction = st.number_input('Indikator riwayat diabetes dalam keluarga', min_value=0.0, step=0.01, format="%.2f")
 with col8:
-    Age = st.number_input('Usia (tahun)', min_value=0, step=1, format="%d")
+    SkinThickness = st.number_input('Ketebalan lipatan kulit trisep (mm)', min_value=0, step=1, format="%d")
 
 # Placeholder for the diagnosis result
 diab_diagnosis = ''
